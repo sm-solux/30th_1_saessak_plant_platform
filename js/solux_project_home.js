@@ -94,7 +94,7 @@ function updateSlides() {
 
         slide.onclick = () => {
           if (plantId) {
-            window.location.href = `../html/solux_project_plants2.html?id=${plantId}`;
+            window.location.href = `../html/solux_project_detail.html?id=${plantId}`;
           } else {
             console.warn('식물 ID가 없어 상세 페이지로 이동할 수 없습니다.');
           }
