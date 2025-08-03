@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>solux project saessak</title>
+    <link rel="stylesheet" href="../css/solux_project_base.css">
+    <link rel="stylesheet" href="../css/solux_project_calendar.css">
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <nav class="sidebar">
+      <div class="sidebar-logo">
+            <img src="../image/sidebar.png" alt="사이드바" />
+        </div>
+        <ul>
+          <li>
+            <a href="solux_project_home.html">
+              <img s src="../image/Home.png"
+              class="menu-icon"
+              data-src="../image/Home.png"
+              data-active-src="../image/Home_act.png"
+              alt="홈"
+              />
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="solux_project_plants.html">
+              <img 
+                src="../image/Plants.png"
+                class="menu-icon"
+                data-src="../image/Plants.png"
+                data-active-src="../image/Plants_act.png"
+                alt="식물"
+              />
+              Plants
+            </a>
+          </li>
+          <li>
+            <a href="solux_project_calendar.html">
+              <img 
+              src="../image/Calendar.png"
+              class="menu-icon"
+              data-src="../image/Calendar.png"
+              data-active-src="../image/Calendar_act.png"
+              alt="달력"
+              />
+              Calendar
+            </a>
+          </li>
+          <li>
+            <a href="solux_project_bugspot.html">
+              <img 
+              src="../image/BugSpot.png"
+                class="menu-icon"
+                data-src="../image/BugSpot.png"
+                data-active-src="../image/BugSpot_act.png"
+                alt="병충해"
+              />
+              Bug Spot
+            </a>
+          </li>
+          <li>
+            <a href="solux_project_settings.html">
+              <img 
+              src="../image/Settings.png"
+                class="menu-icon"
+                data-src="../image/Settings.png"
+                data-active-src="../image/Settings_act.png"
+                alt="설정"
+              />
+              Settings
+            </a>
+          </li>
+        </ul>
+        
+    </nav>
+
+    <div class="main-wrapper">
+      <div class="logo-area">
+      <img src="../image/Logo_full.png" alt="로고" class="saessak-img">
+      </div>
+
+      <main class="content">
+        <section id="content-calendar" class="content-section">
+          <div class="calendar-page-container">
+            <div class="calendar-container">
+              <div class="calendar-header">
+                <button id="prev-month-btn">&lt;</button>
+                <h2 id="current-month-year"></h2>
+                <button id="next-month-btn">&gt;</button>
+              </div>
+              <div class="calendar-grid">
+                <div class="day-name">S</div><div class="day-name">M</div><div class="day-name">T</div><div class="day-name">W</div><div class="day-name">T</div><div class="day-name">F</div><div class="day-name">S</div>
+              </div>
+              <div class="calendar-body" id="calendar-body"></div>
+            </div>
+            <div class="plant-logs-container">
+              <h2>Plant Logs</h2>
+              <h3 id="log-date"></h3>
+              <div id="plant-logs"></div>
+              <div class="log-input-area">
+                <input type="text" id="plant-name-input" placeholder="식물 이름">
+                <input type="text" id="task-input" placeholder="기록할 내용">
+                <button id="add-log-btn">기록 추가</button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="../js/solux_project_base.js"></script>
+  <script src="../js/solux_project_calendar.js"></script>
+</body>
+</html>

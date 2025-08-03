@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>solux project saessak</title>
+    <link rel="stylesheet" href="../css/solux_project_base.css">
+    <link rel="stylesheet" href="../css/solux_project_bugsDetail.css">
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div class="container">
+    <nav class="sidebar">
+      <div class="sidebar-logo">
+            <img src="../image/sidebar.png" alt="사이드바" />
+        </div>
+        <ul>
+          <li>
+            <a href="solux_project_home.html">
+              <img s src="../image/Home.png"
+              class="menu-icon"
+              data-src="../image/Home.png"
+              data-active-src="../image/Home_act.png"
+              alt="홈"
+              />
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="solux_project_plants.html">
+              <img 
+                src="../image/Plants.png"
+                class="menu-icon"
+                data-src="../image/Plants.png"
+                data-active-src="../image/Plants_act.png"
+                alt="식물"
+              />
+              Plants
+            </a>
+          </li>
+          <li>
+            <a href="solux_project_calendar.html">
+              <img 
+              src="../image/Calendar.png"
+              class="menu-icon"
+              data-src="../image/Calendar.png"
+              data-active-src="../image/Calendar_act.png"
+              alt="달력"
+              />
+              Calendar
+            </a>
+          </li>
+          <li>
+            <a href="solux_project_bugspot.html">
+              <img 
+              src="../image/BugSpot.png"
+                class="menu-icon"
+                data-src="../image/BugSpot.png"
+                data-active-src="../image/BugSpot_act.png"
+                alt="병충해"
+              />
+              Bug Spot
+            </a>
+          </li>
+          <li>
+            <a href="solux_project_settings.html">
+              <img 
+              src="../image/Settings.png"
+                class="menu-icon"
+                data-src="../image/Settings.png"
+                data-active-src="../image/Settings_act.png"
+                alt="설정"
+              />
+              Settings
+            </a>
+          </li>
+        </ul>
+        
+    </nav>
+
+    <div class="main-wrapper">
+      <div class="logo-area">
+      <img src="../image/Logo_full.png" alt="로고" class="saessak-img">
+    </div>
+
+    <div class="bug-detail-wrapper">
+      <!-- 이미지 + 설명 묶음 -->
+      <div class="bug-main-area">
+        <div class="bug-image-area">
+          <img id="bug-image" />
+          <button class="bug-back-button" onclick="history.back()">← Back</button>
+        </div>
+        <div class="bug-info-area">
+          <h2 id="bug-name"></h2>
+          <p id="bug-latin-name" class="latin-name"></p>
+          <p id="bug-description"></p>
+        </div>
+      </div>
+    
+      <!-- 출처 -->
+      <div class="bug-source-area">
+        <p>
+          본 저작물은 농촌진흥청에서 작성하여 공공누리 제2유형으로 개방한 병해충별 도감정보를 이용하였으며,<br />
+          해당 저작물은 국가농작물병해충관리시스템 NCPMS에서 이용하실 수 있습니다.
+        </p>
+        <img src="../image/img_opentype02.jpg" alt="공공누리 로고" />
+      </div>
+    </div>
+    
+      
+         
+      
+    </div>
+  </div>
+  <script src="../js/solux_project_base.js"></script>
+  <script src="../js/solux_project_bugsDetail.js"></script>
+  
+  
+</body>
+</html>

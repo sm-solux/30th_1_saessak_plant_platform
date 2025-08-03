@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Saessak Signup</title>
+    <link rel="stylesheet" href="../css/solux_project_signup.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&family=NATS&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class = "logo">
+        <img src="../image/login_logo.svg" alt="로고">
+        </div>
+
+        <form>
+            <label for="id">Username (ID)</label>
+            <div class="input-group">
+                <input type="text" id="username" placeholder="Example" />
+                <button type="button" class="check-btn">Check</button>
+            </div>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="6자리 이상 입력해주세요" />
+
+            <label for="confirm">Confirm Password</label>
+            <input type="password" id="confirm" placeholder="6자리 이상 입력해주세요" />
+
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="example@example.com" />     
+
+            <button type="submit" class="start-btn">Get started</button>
+        </form>
+    </div>
+<script src="../js/solux_project_signup.js"></script>
+</body>
+</html>

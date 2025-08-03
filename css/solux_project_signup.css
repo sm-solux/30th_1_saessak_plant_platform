@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=NATS&display=swap');
+
+body {
+    font-family: 'NATS', sans-serif;
+    background-color: #FFFBEF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    width: 350px;
+}
+
+.logo {
+    width: 270px;
+    margin: 0 auto 10px auto;
+}
+
+.title {
+    font-family: 'NATS', sans-serif;
+    font-size: 48px;
+    margin: 0 0 20px;
+    font-weight: bold;
+    color: #000;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-size: 18px;
+    text-align: left;
+    margin-bottom: -10px;
+    color: #333;
+    font-weight: bold;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    border: 2px solid #333;
+    border-radius: 30px;
+    overflow: hidden;
+    background-color: white;
+    padding: 2px;
+}
+
+.input-group input {
+    border: none;
+    padding: 14px;
+    flex: 1;
+    border-radius: 0;
+    outline: none;
+    font-size: 16px;
+    background: transparent;
+}
+
+.check-btn {
+    background-color: #ff7a2f;
+    color: white;
+    border: none;
+    border-radius: 18px;
+    padding: 8px 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 6px;
+    font-size: 14px;
+}
+
+input[type="password"],
+input[type="email"],
+input[type="text"]:not(.input-group input) {
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 12px;
+    font-size: 16px;
+    outline: none;
+}
+
+.start-btn {
+    background-color: #ff7a2f;
+    color: white;
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 12px 0;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}

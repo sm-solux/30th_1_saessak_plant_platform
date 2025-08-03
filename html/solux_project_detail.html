@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>solux project saessak_plants2</title>
+    <link rel="stylesheet" href="../css/solux_project_base.css">
+    <link rel="stylesheet" href="../css/solux_project_detail.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+<!--상세 정보 html-->
+<body>
+  <div class="container">
+    <nav class="sidebar">
+      <div class="sidebar-logo">
+        <img src="../image/sidebar.png" alt="사이드바" />
+      </div>
+      <ul>
+        <li>
+          <a href="solux_project_home.html"><img src="../image/Home.png" alt="홈" class="menu-icon" /> Home</a>
+        </li>
+        <li>
+          <a href="solux_project_plants.html"><img src="../image/Plants.png" alt="식물" class="menu-icon" /> Plants</a>
+        </li>
+        <li>
+          <a href="solux_project_calendar.html"><img src="../image/Calendar.png" alt="달력" class="menu-icon" /> Calendar</a>
+        </li>
+        <li>
+          <a href="solux_project_bugspot.html"><img src="../image/BugSpot.png" alt="병충해" class="menu-icon" /> Bug Spot</a>
+        </li>
+        <li>
+          <a href="solux_project_settings.html"><img src="../image/Settings.png" alt="설정" class="menu-icon" /> Settings</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- 메인 -->
+     <div class="main-wrapper">
+        <div class="logo-area">
+          <img src="../image/Logo_full.png" alt="로고" class="saessak-img">
+        </div>
+     </div>
+     
+    <main class="content">
+
+      <div class="plant-detail-container" id="plant-detail">
+        <div class="plant-image-section">
+          <img id="plantImage" src="" alt="식물 사진" class="plant-photo" />
+          <h2 id="plantNickname" class="plant-name"></h2>
+          <p id="plantSpecies" class="plant-species"></p>
+          <p id="plantCreatedAt" class="plant-date"></p>
+        </div>
+
+        <div class="plant-info-section">
+          <div class="watering-tracker">
+            <h3>Watering Tracker</h3>
+            <p><span class="drop-icon">💧</span> 물을 준 지 <span id="wateringDays" class="days">-</span>일이 지났어요!</p>
+            <div class="progress-bar">
+              <div id="wateringBar" class="progress-fill" style="width:0%;"></div>
+            </div>
+            <p class="dates">이전 물주기 <span id="wateringDate1">-</span></p>
+            <p class="dates">다음 물주기 <span id="wateringDate2" class="next">-</span></p>
+            <button class="water-button" id="wateredBtn">물주기 완료!</button>
+          </div>
+
+          <div class="repotting-tracker" id="repottingInfo"></div>
+
+          <div class="plant-memo" id="plantMemo">메모</div>
+
+          <div class="plant-location" id="plantLocation">장소</div>
+          <button id="deletePlantBtn">삭제</button>
+          <!--
+          <div class="bug-info" id="pestInfo">병충해 정보</div>
+          -->
+        </div>
+      </div>
+
+    <script>
+    const supabaseUrl = 'https://iiskzhqeshvyjkyvsvhz.supabase.co'
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlpc2t6aHFlc2h2eWpreXZzdmh6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM5NDU0MDQsImV4cCI6MjA2OTUyMTQwNH0.IuPIflTHUWDkR7bSwqP_A5WrUhuasXqbCdlyTzJtcL4'
+    const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey)
+
+    const params = new URLSearchParams(window.location.search);
+    const plantId = params.get('id');
+
+    const plantDetailContainer = document.getElementById('plant-detail');
+
+    if (!plantId) {
+      plantDetailContainer.innerHTML = "<p>식물 ID가 없습니다.</p>";
+    } else {
+      async function fetchPlant() {
+        const { data, error } = await supabaseClient
+          .from('table_addplants')
+          .select('id, created_at, nickname, species, date1, date2, date3, memo, image_url, location')
+          .eq('id', plantId)
+          .single();
+
+        if (error) {
+          alert(`데이터 불러오기 오류: ${error.message}`);
+          return;
+        }
+
+        if (!data) {
+          alert("식물 정보를 찾을 수 없습니다.");
+          return;
+          }
+
+        // 이미지 URL이 있다면 해당 이미지 표시, 없으면 기본 이미지 처리
+        const plantImage = document.getElementById('plantImage');
+        if (data.image_url) {
+            plantImage.src = data.image_url;
+            plantImage.alt = data.nickname || '식물 이미지';
+          } else {
+            plantImage.src = '../image/default-plant.png'; // 기본 이미지
+          plantImage.alt = '기본 식물 이미지';
+        }
+
+        // data: DB에서 받아온 식물 데이터
+      document.getElementById('plantNickname').textContent = data.nickname || '-';
+      document.getElementById('plantSpecies').textContent = data.species || '-';
+
+      // date1: 만난 날짜 (식물 이름 밑)
+      document.getElementById('plantCreatedAt').textContent = data.date1
+        ? new Date(data.date1).toLocaleDateString()
+        : '-';
+
+      // date2: 물갈이 날짜
+      const wateringIntervals = {
+          음지: 60,       // 음지 - 2달마다 물주기
+          반음지: 30,  // 반음지 - 1달마다 물주기
+          반양지: 14,  // 반양지 - 2주마다 물주기
+          양지: 7        // 양지 - 1주마다 물주기
+        };
+      const prevWaterDateEl = document.getElementById('wateringDate1');
+      const nextWaterDateEl = document.getElementById('wateringDate2');
+
+      const location = data.location || 'shade';  // 기본값 지정
+      const wateringInterval = wateringIntervals[location] || 30;  // 없다면 기본 30일 주기 (안전장치)
+
+      if (data.date2) {
+        const prevWaterDate = new Date(data.date2);
+  
+        // 한국시간 기준 오늘 날짜 (년,월,일만 비교)
+        const now = new Date();
+        const todayKST = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  
+        // 물 준 날도 년,월,일만 (로컬/한국 시간 기준)
+        const prevWaterDateKST = new Date(prevWaterDate.getFullYear(), prevWaterDate.getMonth(), prevWaterDate.getDate());
+
+        // 날짜차이 계산
+        const diffTime = todayKST - prevWaterDateKST; // 밀리초 단위
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        document.getElementById('wateringDays').textContent = diffDays;
+  
+        prevWaterDateEl.textContent = prevWaterDate.toLocaleDateString('ko-KR', { timeZone: 'Asia/Seoul' });
+
+        // 다음 물주는 날짜
+        const nextWaterDate = new Date(prevWaterDateKST); // 같은 기준으로
+        nextWaterDate.setDate(nextWaterDate.getDate() + wateringInterval);
+        nextWaterDateEl.textContent = nextWaterDate.toLocaleDateString('ko-KR', { timeZone: 'Asia/Seoul' });
+
+        // 워터링 바 너비
+        const widthPercent = Math.min((diffDays / wateringInterval) * 100, 100);
+        document.getElementById('wateringBar').style.width = widthPercent + '%';
+
+      } else {
+        prevWaterDateEl.textContent = '-';
+        nextWaterDateEl.textContent = '-';
+        document.getElementById('wateringDays').textContent = '-';
+        document.getElementById('wateringBar').style.width = '0%';
+      }
+
+      // date3: 이전 분갈이 날짜 - 분갈이 트래커 영역에 표시
+      const repottingInfoEl = document.getElementById('repottingInfo');
+
+      if (data.date3) {
+        const repotDate = new Date(data.date3);
+        const repotDays = Math.floor((new Date() - repotDate) / (1000 * 60 * 60 * 24));
+        repottingInfoEl.innerHTML = `
+          <strong>분갈이 트래커</strong><br />
+          ${repotDays}일 전 (${repotDate.toLocaleDateString()})
+        `;
+      } else {
+        repottingInfoEl.innerHTML = `
+          분갈이 정보가 없습니다.<br />
+        `;
+      }
+
+      //메모
+     const memoEl = document.getElementById('plantMemo');
+        if (data.memo && data.memo.trim() !== "") {
+          memoEl.innerHTML = `<strong>메모</strong><br>${data.memo}`;
+        } else {
+          memoEl.innerHTML = `<strong>메모</strong><br>기록된 메모가 없습니다.`;
+        }
+      
+      //장소
+      const locationEl = document.getElementById('plantLocation');
+      if (data.location && data.location.trim() !== "") {
+        locationEl.innerHTML = `<strong>장소</strong><br>${data.location} - ${wateringIntervals[data.location] || '주기 미정'}일 주기로 물을 주면 좋습니다`;
+      } else {
+        locationEl.innerHTML = `<strong>장소</strong><br>기록이 없습니다.`;
+      }
+    }
+      fetchPlant();
+
+      //물주기 완료
+      function getKSTISOString() {
+        const now = new Date();
+        const kstTime = new Date(now.getTime() + 9 * 60 * 60 * 1000); // UTC +9시간
+        return kstTime.toISOString().replace('Z', '');
+      }
+
+      document.getElementById('wateredBtn').addEventListener('click', async () => {
+        const newDate = getKSTISOString();  // newDate 변수명 유지, 한국 시간 ISO 문자열 생성
+        
+        const { data, error } = await supabaseClient
+          .from('table_addplants')
+          .update({ date2: newDate })
+          .eq('id', plantId);
+
+        if (error) {
+          alert('물 준 날짜 업데이트 실패: ' + error.message);
+          return;
+        } 
+        // 업데이트 후 변경된 데이터 다시 가져오기
+      const { data: updatedData, error: selectError } = await supabaseClient
+        .from('table_addplants')
+        .select('*')
+      .eq('id', plantId)
+      .single();  
+
+      if (selectError) {
+        alert('업데이트 후 데이터 조회 실패: ' + selectError.message);
+        return;
+      }
+      await fetchPlant(); // 최신 데이터로 화면 갱신
+    });
+    }
+
+    // 사이드바 클릭 시 active 토글 및 이미지 교체
+    function handleSidebarClick(clickedAnchor, section, newImageSrc) {
+      document.querySelectorAll('.sidebar a').forEach(a => {
+        if (a.dataset.originalInner) {
+          a.innerHTML = a.dataset.originalInner;
+        }
+        a.classList.remove('active');
+      });
+
+      clickedAnchor.innerHTML = `<img src="${newImageSrc}" alt="${section}" class="menu-icon-selected" /> ${section.charAt(0).toUpperCase() + section.slice(1)}`;
+      clickedAnchor.classList.add('active');
+    }
+
+document.getElementById('deletePlantBtn').addEventListener('click', async () => {
+  const confirmDelete = confirm('정말 이 식물을 삭제할까요?');
+  if (!confirmDelete) return;
+
+  console.log("삭제 시도할 plantId:", plantId);  // 삭제 전 id 확인
+
+  const { data, error } = await supabaseClient
+    .from('table_addplants')
+    .delete()
+    .eq('id', plantId);  
+
+  
+  console.log("삭제 결과:", data);
+
+  if (error) {
+    alert('삭제 실패: ' + error.message);
+    console.error(error);
+  } else {
+    alert('삭제 완료!');
+    console.log("삭제 결과:", data);
+    window.location.href = 'solux_project_plants.html';
+  }
+
+});
+
+
+  </script>
+</body>
+</html>

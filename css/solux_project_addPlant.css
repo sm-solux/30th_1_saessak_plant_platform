@@ -1,0 +1,91 @@
+@import url('https://fonts.cdnfonts.com/css/nats');
+
+.add-plant-container {
+    width: 800px;    
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+  
+
+    gap: 80px;
+    font-family: 'NATS', sans-serif;
+    font-weight: 400;
+}
+
+.image-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.upload-box {
+    width: 200px;
+    height: 250px;
+    border: 2px solid black;
+    border-radius: 20px;
+    text-align: center;
+    padding-top: 100px;
+    cursor: pointer;
+    background-color: #FFFDF7;
+    margin-bottom: 20px;
+}
+
+.upload-box span {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+.camera-icon {
+    position: relative;
+    bottom: 70px;
+    width: 190px;
+    height: 190px;
+    object-fit: contain; 
+}
+
+.add-plant-btn {
+  background-color: #ff7a1a;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  border: 2px solid black;
+  padding: 10px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  bottom: 90px; 
+}
+
+
+.form-section label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.form-section input {
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 14px;
+  width: 220px;
+}
+.form-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 40px; 
+}
+
+.form-section > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-section select {
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 14px;
+  width: 245px;
+}

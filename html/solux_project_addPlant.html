@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>solux project saessak</title>
+    <link rel="stylesheet" href="../css/solux_project_base.css">
+    <link rel="stylesheet" href="../css/solux_project_addPlant.css">
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <nav class="sidebar">
+      <div class="sidebar-logo">
+        <img src="../image/sidebar.png" alt="사이드바" />
+      </div>
+      <ul>
+        <li>
+          <a href="solux_project_home.html">
+            <img src="../image/Home.png"
+              class="menu-icon"
+              data-src="../image/Home.png"
+              data-active-src="../image/Home_act.png"
+              alt="홈" />
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="solux_project_plants.html">
+            <img src="../image/Plants.png"
+              class="menu-icon"
+              data-src="../image/Plants.png"
+              data-active-src="../image/Plants_act.png"
+              alt="식물" />
+            Plants
+          </a>
+        </li>
+        <li>
+            <a href="solux_project_calendar.html">
+              <img 
+              src="../image/Calendar.png"
+              class="menu-icon"
+              data-src="../image/Calendar.png"
+              data-active-src="../image/Calendar_act.png"
+              alt="달력"
+              />
+              Calendar
+            </a>
+          </li>
+          <li>
+            <a href="solux_project_bugspot.html">
+              <img 
+              src="../image/BugSpot.png"
+                class="menu-icon"
+                data-src="../image/BugSpot.png"
+                data-active-src="../image/BugSpot_act.png"
+                alt="병충해"
+              />
+              Bug Spot
+            </a>
+          </li>
+          <li>
+            <a href="solux_project_settings.html">
+              <img 
+              src="../image/Settings.png"
+                class="menu-icon"
+                data-src="../image/Settings.png"
+                data-active-src="../image/Settings_act.png"
+                alt="설정"
+              />
+              Settings
+            </a>
+          </li>
+        </ul>
+    </nav>
+
+    <div class="main-wrapper">
+      <div class="logo-area">
+        <img src="../image/Logo_full.png" alt="로고" class="saessak-img" />
+      </div>
+
+      <main class="content">
+        <section id="content-home" class="content-section">
+          <div class="add-plant-container">
+            <!-- 사진 업로드 박스 -->
+            <div class="image-upload">
+              <div class="upload-box">
+                <img src="../image/camera.png" alt="카메라 아이콘" class="camera-icon" />
+                <div id="uploadMessage" style="margin-top: 20px; font-size: 14px; color: green; text-align: center;"></div>
+                <input type="file" id="plant-image-file" accept="image/*" style="display:none" />
+              </div>
+              <button class="add-plant-btn">Add Plant</button>
+            </div>
+
+            <!-- 정보 입력 폼 -->
+            <div class="form-section">
+              <div>
+                <label for="nickname">식물 이름</label>
+                <input type="text" id="nickname" name="nickname" placeholder="Name..." />
+              </div>
+              <div>
+                <label for="species">식물 종류</label>
+                <input type="text" id="species" name="species" placeholder="Species..." />
+              </div>
+              <div>
+                <label for="date1">만난 날짜</label>
+                <input type="date" id="date1" name="date1" />
+              </div>
+              <div>
+                <label for="date2">물주기 이력</label>
+                <input type="date" id="date2" name="date2" />
+              </div>
+              <div>
+                <label for="date3">분갈이 이력</label>
+                <input type="date" id="date3" name="date3" />
+              </div>
+              <div>
+                <label for="memo">메모</label>
+                <input type="text" id="memo" name="memo" placeholder="memo..." />
+              </div>
+              <div>
+                <label for="location">식물위치</label>
+                <select id="location" name="location">
+                    <option value="음지">음지</option>
+                    <option value="반음지">반음지</option>
+                    <option value="반양지">반양지</option>
+                    <option value="양지">양지</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="../js/solux_project_base.js"></script>
+
+  <script>
+    const supabaseUrl = 'https://iiskzhqeshvyjkyvsvhz.supabase.co'
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlpc2t6aHFlc2h2eWpreXZzdmh6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM5NDU0MDQsImV4cCI6MjA2OTUyMTQwNH0.IuPIflTHUWDkR7bSwqP_A5WrUhuasXqbCdlyTzJtcL4'
+    const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey)
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const fileInput = document.getElementById('plant-image-file')
+      const uploadMessage = document.getElementById('uploadMessage')
+
+      document.querySelector('.camera-icon').addEventListener('click', () => {
+        fileInput.click()
+      })
+
+      fileInput.addEventListener('change', () => {
+        const file = fileInput.files[0]
+        if (file) {
+          uploadMessage.textContent = `업로드 : ${file.name}`
+          uploadMessage.style.color = 'green'
+        } else {
+          uploadMessage.textContent = ''
+        }
+      })
+
+      document.querySelector('.add-plant-btn').addEventListener('click', async () => {
+        const file = fileInput.files[0]
+        let publicUrl = null
+
+        if (file) {
+          const filePath = `plant-images/${Date.now()}_${file.name}`
+
+          const { error: uploadError } = await supabaseClient
+            .storage
+            .from('plant-images')
+            .upload(filePath, file)
+
+          if (uploadError) {
+            alert('이미지 업로드 실패: ' + uploadError.message)
+            return
+          }
+
+          const { data: urlData } = await supabaseClient
+            .storage
+            .from('plant-images')
+            .getPublicUrl(filePath)
+
+          publicUrl = urlData.publicUrl
+          alert('이미지 업로드 성공!')
+        }
+
+        const nickname = document.getElementById('nickname').value
+        const species = document.getElementById('species').value
+        if (!nickname) {
+          alert('식물 이름을 입력해주세요.')
+          return
+        }
+        if (!species) {
+          alert('식물 종류를 입력해주세요.')
+          return
+        }
+        const date1 = document.getElementById('date1').value
+        const date2 = document.getElementById('date2').value
+        const date3 = document.getElementById('date3').value
+        const memo = document.getElementById('memo').value
+        const locationSelect = document.getElementById('location');
+        const location = locationSelect.value;  // 선택된 option의 value 값을 가져옴
+
+        const { data, error } = await supabaseClient
+          .from('table_addplants')
+          .insert([
+            {
+              nickname,
+              species,
+              date1,
+              date2,
+              date3,
+              memo,
+              image_url: publicUrl,
+              location
+            },
+          ])
+
+        if (error) {
+          alert('저장 실패: ' + error.message)
+        } else {
+          alert('저장 성공!')
+          document.getElementById('nickname').value = ''
+          document.getElementById('species').value = ''
+          document.getElementById('date1').value = ''
+          document.getElementById('date2').value = ''
+          document.getElementById('date3').value = ''
+          document.getElementById('memo').value = ''
+          document.getElementById('location').value = '음지'; //기본값 "음지"로 초기화
+          fileInput.value = ''
+          uploadMessage.textContent = ''
+        }
+      })
+    })
+  </script>
+</body>
+</html>

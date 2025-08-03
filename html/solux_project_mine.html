@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>solux project saessak</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="solux_project_mine.css">
+</head>
+
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <div class="sidebar-logo">
+                <img src="sidebar.png" alt="사이드바" />
+            </div>
+            <ul>
+                <li><a href="#" onclick="showContent('home')"><img src="Home.png" alt="홈" class="menu-icon" /> Home</a></li>
+                <li><a href="#" onclick="showContent('plants')"><img src="Plants.png" alt="식물" class="menu-icon" /> Plants</a></li>
+                <li><a href="#" onclick="showContent('service')"><img src="Calendar.png" alt="달력" class="menu-icon" /> Calendar</a></li>
+                <li><a href="#" onclick="showContent('bugspot')"><img src="BugSpot.png" alt="병충해" class="menu-icon" /> Bug Spot</a></li>
+                <li><a href="#" onclick="showContent('settings')"><img src="Settings.png" alt="설정" class="menu-icon" /> Settings</a></li>
+            </ul>
+        </nav>
+        
+        <main class="content">
+            <div class="main-logo">
+                saessak <img src="Logo.png" alt="로고" class="saessak-img">
+            </div>
+
+            <section id="content-home" class="content-section"></section>
+            <section id="content-plants" class="content-section"></section>
+            <section id="content-settings" class="content-section"></section>
+            
+            <section id="content-service" class="content-section">
+                <div class="calendar-page-container">
+                    <div class="calendar-container">
+                        <div class="calendar-header">
+                            <button id="prev-month-btn">&lt;</button>
+                            <h2 id="current-month-year"></h2>
+                            <button id="next-month-btn">&gt;</button>
+                        </div>
+                        <div class="calendar-grid">
+                            <div class="day-name">S</div><div class="day-name">M</div><div class="day-name">T</div><div class="day-name">W</div><div class="day-name">T</div><div class="day-name">F</div><div class="day-name">S</div>
+                        </div>
+                        <div class="calendar-body" id="calendar-body"></div>
+                    </div>
+                    
+                    <div class="plant-logs-container">
+                        <h2>Plant Logs</h2>
+                        <div class="log-content">
+                            <h3 id="log-date"></h3>
+                            <div id="plant-logs"></div>
+                            
+                            <div class="log-input-area">
+                                <input type="text" id="plant-name-input" placeholder="식물 이름">
+                                <input type="text" id="task-input" placeholder="기록할 내용">
+                                <button id="add-log-btn">기록 추가</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="content-bugspot" class="content-section">
+                <div class="bugspot-container">
+                    <div class="search-bar-container">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="bugspot-search-input" placeholder="Type to search...">
+                    </div>
+                    <div class="filter-buttons">
+                        <button id="filter-disease" class="filter-btn active">disease</button>
+                        <button id="filter-bug" class="filter-btn">bug</button>
+                    </div>
+                    <div class="bugspot-grid" id="bugspot-grid">
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="solux_project_mine.js"></script>
+</body>
+</html>

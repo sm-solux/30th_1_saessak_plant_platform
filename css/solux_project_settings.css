@@ -1,0 +1,115 @@
+
+/* 개인설정 프로필박스 */
+.profile-container {
+    background: #fcfbf7;
+    border-radius: 20px;
+    padding: 32px 32px;
+    width: 1000px;
+    font-size:15px;
+    border: 2.5px solid #000000; 
+    margin-top:-10px;
+    margin-left:30px;
+}
+
+.profile-container, .profile-container * {
+    font-family: 'Nanum Gothic', Arial, sans-serif !important;
+}
+
+.profile-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.profile-img {
+    width: 100px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2.5px solid #d9d2be;
+    background: #f8f8f8;
+    margin-right: 22px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: row;        
+    align-items: center;       
+    gap: 20px;                 
+    width: 1000px; 
+}
+
+.username {
+    font-size: 1.5em;
+    font-weight:700;
+    margin-top:20px;
+}
+
+.edit-btn {
+    background: #f7f4f1;
+    border-radius: 10px;
+    padding: 4px 16px;
+    cursor: pointer;
+    font-size: 15px;
+    color: #555;
+    transition: background-color 0.2s;
+    align-self: flex-end; 
+    margin-left: auto; 
+}
+
+.edit-btn:hover {
+    background: #fbeeee;
+}
+
+.info-box {
+    border: 2px solid #000000;
+    border-radius: 13px;
+    background: #fdfcf8;
+    padding: 15px 12px 14px 18px;
+    margin-bottom: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.info-box label {
+    margin-top: 5px;
+    margin-bottom: 2.5px;
+    font-size: 15px;
+    color: #000000;
+}
+
+.info-box input {
+    border-radius: 8px;
+    padding: 6px 11px;
+    font-size: 1em;
+    background: #fff;
+    margin-bottom: 4px;
+    color: #555;
+}
+
+.info-box input[readonly] {
+    background: #f8f7f3;
+}
+
+.btn-box {
+    display: flex;
+    justify-content: flex-end;
+    gap: 13px;
+}
+
+.logout-btn, .withdraw-btn {
+    font-size: 15px;
+    border-radius: 10px;
+    border: 2px solid #ff3535;
+    background: #fff4f2;
+    color: #ff3535;
+    padding: 5px 18px;
+    margin-top: 7px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+}
+.logout-btn:hover, .withdraw-btn:hover {
+    background: #ffe1e1;
+    color: #cc1d1d;
+}

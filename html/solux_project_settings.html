@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>solux project saessak</title>
+    <link rel="stylesheet" href="../css/solux_project_base.css">
+    <link rel="stylesheet" href="../css/solux_project_settings.css">
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+</head>
+
+<body>
+  <div class="container">
+    <nav class="sidebar">
+      <div class="sidebar-logo">
+            <img src="../image/sidebar.png" alt="사이드바" />
+        </div>
+        <ul>
+          <li>
+            <a href="solux_project_home.html">
+              <img s src="../image/Home.png"
+              class="menu-icon"
+              data-src="../image/Home.png"
+              data-active-src="../image/Home_act.png"
+              alt="홈"
+              />
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="solux_project_plants.html">
+              <img 
+                src="../image/Plants.png"
+                class="menu-icon"
+                data-src="../image/Plants.png"
+                data-active-src="../image/Plants_act.png"
+                alt="식물"
+              />
+              Plants
+            </a>
+          </li>
+          <li>
+            <a href="solux_project_calendar.html">
+              <img 
+              src="../image/Calendar.png"
+              class="menu-icon"
+              data-src="../image/Calendar.png"
+              data-active-src="../image/Calendar_act.png"
+              alt="달력"
+              />
+              Calendar
+            </a>
+          </li>
+          <li>
+            <a href="solux_project_bugspot.html">
+              <img 
+              src="../image/BugSpot.png"
+                class="menu-icon"
+                data-src="../image/BugSpot.png"
+                data-active-src="../image/BugSpot_act.png"
+                alt="병충해"
+              />
+              Bug Spot
+            </a>
+          </li>
+          <li>
+            <a href="solux_project_settings.html">
+              <img 
+              src="../image/Settings.png"
+                class="menu-icon"
+                data-src="../image/Settings.png"
+                data-active-src="../image/Settings_act.png"
+                alt="설정"
+              />
+              Settings
+            </a>
+          </li>
+        </ul>
+        
+    </nav>
+
+    <div class="main-wrapper">
+      <div class="logo-area">
+      <img src="../image/Logo_full.png" alt="로고" class="saessak-img">
+      </div>
+
+      <main class="content">
+        <section id="content-settings" class="content-section">
+          <div class="profile-container">
+            <div class="profile-section">
+              <img src="../image/plant1.jpg" alt="프로필 이미지" class="profile-img" />
+              <div class="user-info">
+                <span class="username">사용자1</span>
+                <button class="edit-btn">프로필 편집</button>
+              </div>
+            </div>
+            <form class="info-box" onsubmit="return false;">
+              <label>Username</label>
+              <input type="text" id="profile-username" value="username" readonly />
+
+              <label>PW</label>
+              <input type="password" id="profile-pw" value="password" readonly />
+
+              <label>EMAIL</label>
+              <input type="email" id="profile-email" value="email" readonly />
+            </form>
+            <div class="btn-box">
+              <button class="logout-btn" onclick="alert('로그아웃')">로그아웃</button>
+              <button class="withdraw-btn" onclick="alert('탈퇴하기')">탈퇴하기</button>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="../js/solux_project_base.js"></script>
+  <script>
+    //supabase 관련 JS
+    const supabaseUrl = 'https://iiskzhqeshvyjkyvsvhz.supabase.co'
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlpc2t6aHFlc2h2eWpreXZzdmh6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM5NDU0MDQsImV4cCI6MjA2OTUyMTQwNH0.IuPIflTHUWDkR7bSwqP_A5WrUhuasXqbCdlyTzJtcL4'
+    const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey)
+
+    async function loadUserProfile() {
+      try {
+        // 현재 로그인한 사용자 정보 가져오기 (Auth 기준)
+        const {
+          data: { user },
+          error: userError,
+        } = await supabaseClient.auth.getUser();
+
+        if (userError) {
+          console.error('유저 정보 조회 실패:', userError);
+          return;
+        }
+        if (!user) {
+          console.log('로그인된 유저가 없습니다.');
+          return;
+        }
+
+        // auth에서 받은 user ID로 userinfo 테이블에서 프로필 조회
+        const { data, error } = await supabaseClient
+          .from('userinfo')
+          .select('username, email')
+          .eq('id', user.id)
+          .single();
+
+        if (error) {
+          console.error('userinfo 테이블에서 사용자 정보 조회 실패:', error);
+          return;
+        }
+
+        // 각 input 엘리먼트에 데이터 할당
+        const usernameInput = document.getElementById('profile-username');
+        const emailInput = document.getElementById('profile-email');
+        const pwInput = document.getElementById('profile-pw');
+
+        if (usernameInput) usernameInput.value = data.username || '';
+        if (emailInput) emailInput.value = data.email || '';
+        if (pwInput) pwInput.value = '********'; // 비밀번호는 보통 이렇게 표시
+
+      } catch (err) {
+        console.error('사용자 정보 로드 중 오류 발생:', err);
+      }
+    }
+
+    // 페이지가 로드된 후 사용자 정보 불러오기 실행
+    document.addEventListener('DOMContentLoaded', () => {
+        loadUserProfile();
+
+        const logoutBtn = document.querySelector('.logout-btn');
+        if (logoutBtn) {
+          logoutBtn.addEventListener('click', async () => {
+            const { error } = await supabaseClient.auth.signOut();
+            if (error) {
+              alert('로그아웃 실패: ' + error.message);
+            } else {
+              window.location.href = 'solux_project_login.html'; // 로그인 페이지 경로로 변경
+            }
+          });
+        }
+      });
+
+    </script>
+  
+  </body>
+</html>
