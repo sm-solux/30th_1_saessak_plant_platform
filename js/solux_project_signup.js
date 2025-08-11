@@ -1,6 +1,6 @@
 //supabase 관련 JS
 const supabaseUrl = 'https://iiskzhqeshvyjkyvsvhz.supabase.co'
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlpc2t6aHFlc2h2eWpreXZzdmh6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM5NDU0MDQsImV4cCI6MjA2OTUyMTQwNH0.IuPIflTHUWDkR7bSwqP_A5WrUhuasXqbCdlyTzJtcL4'
+const supabaseKey = ''
 const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
 // 중복 체크 상태와 마지막 검사한 아이디 저장용 변수
