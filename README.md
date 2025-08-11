@@ -3,16 +3,21 @@
 
 30기 스타터 saessak팀의 '식물관리페이지' 프로젝트 repository입니다.
 
+이 프로젝트는 그동안 공부한 프론트엔드 실력을 점검하기 위한 프로젝트입니다.  
+현재 Supabase를 활용한 사용자별 식물 저장 기능은 활성화되어 있지 않으며, 추후 해당 기능을 포함하여 디벨롭할 예정입니다.
+This project was created as part of my studies to assess my frontend development skills.  
+The feature for storing plants on a per-user basis using Supabase is currently not active, but it is planned for future development.
+
 ## 기획 의도
 누구나 쉽게 식물을 기를 수 있도록 효율적 통합 관리 환경 제공하는 것을 목적으로 하였습니다.
 실패경험 최소화 및 지속적 동기 부여를 통해 초보자를 위한 식물 관리 서비스를 기획해보았습니다.
-The project aims to provide an efficient, integrated management environment that allows anyone to easily grow plants.
-It is designed as a plant care service for beginners, minimizing failure experiences and providing continuous motivation.
+Our goal is to provide an efficient, integrated management environment that makes it easy for anyone to grow plants.
+This service is designed especially for beginners, helping them minimize failures and stay motivated through continuous engagement.
 
 ## 주요기능
-- **메인 페이지**와 **식물 상세관리**, **병충해 정보** 제공 (Main page, detailed plant management, and pest/disease information)
-- 식물 등록 및 **물주기 트래커** 기능 구현, 관리 편의성 향상 (Plant registration and a watering tracker feature to improve management convenience)
-- 간단한 애니메이션 효과와 반응형 디자인 적용 (Simple animation effects and a responsive design)
+- **메인 페이지**와 **식물 상세관리**, **병충해 정보** 제공 (Main page, detailed plant management, and pest & disease information)
+- 식물 등록 및 **물주기 트래커** 기능 구현, 관리 편의성 향상 (Plant registration with a watering tracker to make care more convenient)
+- 간단한 애니메이션 효과와 반응형 디자인 적용 (Simple animations and a responsive design for an enhanced user experience)
   
 
 ## 사용 기술
