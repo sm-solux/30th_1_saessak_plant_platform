@@ -1,5 +1,5 @@
 const supabaseUrl = 'https://iiskzhqeshvyjkyvsvhz.supabase.co';
-const supabaseKey = ''
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlpc2t6aHFlc2h2eWpreXZzdmh6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTM5NDU0MDQsImV4cCI6MjA2OTUyMTQwNH0.IuPIflTHUWDkR7bSwqP_A5WrUhuasXqbCdlyTzJtcL4'
 const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
 const gallery = document.getElementById('plantGallery');
