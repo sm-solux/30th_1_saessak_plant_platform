@@ -6,11 +6,14 @@
 ## 기획 의도
 누구나 쉽게 식물을 기를 수 있도록 효율적 통합 관리 환경 제공하는 것을 목적으로 하였습니다.
 실패경험 최소화 및 지속적 동기 부여를 통해 초보자를 위한 식물 관리 서비스를 기획해보았습니다.
+The project aims to provide an efficient, integrated management environment that allows anyone to easily grow plants.
+It is designed as a plant care service for beginners, minimizing failure experiences and providing continuous motivation.
 
 ## 주요기능
-- **메인 페이지**와 **식물 상세관리**, **병충해 정보** 제공
-- 식물 등록 및 **물주기 트래커** 기능 구현, 관리 편의성 향상
-- 간단한 애니메이션 효과와 반응형 디자인 적용
+- **메인 페이지**와 **식물 상세관리**, **병충해 정보** 제공 (Main page, detailed plant management, and pest/disease information)
+- 식물 등록 및 **물주기 트래커** 기능 구현, 관리 편의성 향상 (Plant registration and a watering tracker feature to improve management convenience)
+- 간단한 애니메이션 효과와 반응형 디자인 적용 (Simple animation effects and a responsive design)
+  
 
 ## 사용 기술
 <img src="https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
