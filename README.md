@@ -4,12 +4,6 @@
 30기 스타터 saessak팀의 '식물관리페이지' 프로젝트 repository입니다.   
 This project was created as part of the Sookmyung Women's University Programming Club SOLUX.
 
-현재 Supabase를 활용한 사용자별 식물 저장 기능은 활성화되어 있지 않으며, 추후 해당 기능을 포함하여 디벨롭할 예정입니다.  
-또한, 이 프로젝트는 민감한 데이터가 없는 학습용 프로젝트이지만, 향후 실제 서비스나 민감한 데이터를 다루게 될 경우를 대비해 RLS 정책을 강화하고 Supabase 키 보안을 철저히 관리해야 합니다.  
- 
-The feature for storing plants on a per-user basis using Supabase is currently not active, but it is planned for future development.  
-Also, while this project contains no sensitive data and is intended for study purposes, you should strengthen RLS policies and carefully manage Supabase key security if it is ever moved to production or used to handle sensitive information.  
-
 ## 기획 의도
 누구나 쉽게 식물을 기를 수 있도록 효율적 통합 관리 환경 제공하는 것을 목적으로 하였습니다.
 실패경험 최소화 및 지속적 동기 부여를 통해 초보자를 위한 식물 관리 서비스를 기획해보았습니다.
@@ -39,17 +33,6 @@ This service is designed especially for beginners, helping them minimize failure
 <img width="1872" height="898" alt="image" src="https://github.com/user-attachments/assets/b688e0d5-b05c-43f8-89df-0d38b8708572" /> 병충해 세부 정보
 (본 저작물은 농촌진흥청에서 작성하여 공공누리 제2유형으로 개방한 병해충별 도감정보를 이용하였으며, 해당 저작물은 국가농작물병해충관리시스템 NCPMS에서 이용하실 수 있습니다.)
 <img width="1802" height="892" alt="image" src="https://github.com/user-attachments/assets/7448135c-1f32-47ef-b52c-ce876e327aac" /> 개인 설정
-
-## License
-MIT License
-
-Copyright (c) 2025 이나연(nylee16) 숙명여자대학교 Sookmyung Women's University 인공지능공학부
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ## 문의
 email : nylee16@sookmyung.ac.kr 
