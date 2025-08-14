@@ -4,11 +4,9 @@
 30기 스타터 saessak팀의 '식물관리페이지' 프로젝트 repository입니다.   
 This project was created as part of the Sookmyung Women's University Programming Club SOLUX.
 
-이 프로젝트는 그동안 공부한 **프론트엔드 실력을 점검**하기 위한 프로젝트입니다.  
 현재 Supabase를 활용한 사용자별 식물 저장 기능은 활성화되어 있지 않으며, 추후 해당 기능을 포함하여 디벨롭할 예정입니다.  
 또한, 이 프로젝트는 민감한 데이터가 없는 학습용 프로젝트이지만, 향후 실제 서비스나 민감한 데이터를 다루게 될 경우를 대비해 RLS 정책을 강화하고 Supabase 키 보안을 철저히 관리해야 합니다.  
-
-This project was created as part of my studies to assess my frontend development skills.   
+ 
 The feature for storing plants on a per-user basis using Supabase is currently not active, but it is planned for future development.  
 Also, while this project contains no sensitive data and is intended for study purposes, you should strengthen RLS policies and carefully manage Supabase key security if it is ever moved to production or used to handle sensitive information.  
 
